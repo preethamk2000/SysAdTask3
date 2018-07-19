@@ -41,7 +41,7 @@ while ($line = fgets($fr)) {
        for($i=1;$i<$asize;$i++)
        {
 
-         mysqli_query($conn,"UPDATE filedb SET $colname[$i]='$rows[$i]' FROM filedb WHERE $colname[0]='$rows[0]';");
+         mysqli_query($conn,"UPDATE filedb SET $colname[$i]='$rows[$i]' WHERE id=$row;");
          echo " yay ";
 
        }
