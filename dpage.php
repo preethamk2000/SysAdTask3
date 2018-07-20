@@ -8,6 +8,7 @@
 	<h1>PC Health Monitor</h1>
 	<h2>
 	<?php 
+$rcount=1;
 
 $server = "localhost";
 $uname = "testuser";
@@ -22,8 +23,16 @@ $conx = mysqli_connect($server,$uname,$pword,$dbname);
 }
 ?>
 <?php
-   for($i=1; $i<11 ; $i++): ?>
+   for($i=$rcount; $i<$rcount+1 ; $i++): ?>
 <?php $result=mysqli_query($conx,"SELECT * FROM sysparams where id='$i';");
+	  $result2=mysqli_query($conx,"SELECT * FROM sysparams where id='$i'+1;");	
+	  
+	  $objj = mysqli_fetch_object($result2);
+      if ($objj!=null) {
+      	
+      	$rcount++;
+
+      }
 	  $obj = mysqli_fetch_object($result);  ?>	
 <h2>
 <table style="width:105%">
@@ -37,12 +46,10 @@ $conx = mysqli_connect($server,$uname,$pword,$dbname);
     <th align="left"><u>Time Stamp</u></th>
   </tr>
   
-
-
   <tr>
     <td> <?php echo $obj->musage; ?>% </td>
     <td> <?php echo $obj->cpusage; ?>% </td>
-    <td> <?php echo $obj->dusage; ?>B </td>
+    <td> <?php echo $obj->dusage; ?>B</td>
     <td> <?php echo $obj->utime; ?>(hh:mm) </td>
     <td> <?php echo $obj->acons; ?> </td>
     <td> <?php echo $obj->pmax; ?> </td>
