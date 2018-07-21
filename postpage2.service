@@ -1,0 +1,15 @@
+[Unit]
+Description=Update the page
+After=network.target
+After=mysql.service
+
+[Service]
+Type=simple
+User=iampk
+ExecStart=/home/iampk/Desktop/params2.sh
+Restart=always
+RestartSec=30
+
+
+[Install]
+WantedBy=multi-user.target
